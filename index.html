@@ -7,12 +7,16 @@
     <title>Red Chilli Restaurant</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.5.0/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script src="https://kit.fontawesome.com/b50631002d.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="images/spicy-pepper-clipart-design-illustration-free-png.webp" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="navbar bg-gray-100 ">
+    <div class="navbar bg-gray-100 border-t border-red-600">
         <div class=" mx-auto justify-between gap-24">
             <div class="navbar-start  ">
                 <div class="dropdown">
@@ -25,7 +29,8 @@
                     </div>
                     <ul tabindex="0"
                         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <img class="w-[100px]" src="images/spicy-pepper-clipart-design-illustration-free-png.webp" alt="">
+                        <img class="w-[100px]" src="images/spicy-pepper-clipart-design-illustration-free-png.webp"
+                            alt="">
                         <li><a>Menu</a></li>
                         <li><a>Rewards</a></li>
                         <li><a>Locations</a></li>
@@ -33,7 +38,7 @@
                         <li><a>Login</a></li>
                     </ul>
                 </div>
-    
+
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
@@ -45,25 +50,42 @@
                     <li><a>Login</a></li>
                 </ul>
             </div>
-            <div class="navbar-end mr-40 flex gap-16">
+            <div class=" flex gap-16">
                 <div class="drawer drawer-end">
                     <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">
-                      <!-- Page content here -->
-                      <label for="my-drawer-4" class="drawer-button btn btn-outline"><i class="fa-solid fa-bag-shopping"></i></label>
-                    </div> 
-                    <div class="drawer-side">
-                      <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-                      <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                        <!-- Sidebar content here -->
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
-                      </ul>
+                        <!-- Page content here -->
+                        <label for="my-drawer-4" class="drawer-button btn btn-outline"><i
+                                class="fa-solid fa-bag-shopping"></i></label>
                     </div>
-                  </div>
+                    <div class="drawer-side">
+                        <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+                        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                            <!-- Sidebar content here -->
+                            <li><a>Sidebar Item 1</a></li>
+                            <li><a>Sidebar Item 2</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <a class="btn w-[120px] bg-red-500 text-white">Order Now</a>
             </div>
         </div>
+    </div>
+
+    <div>
+        <h2 class="text-center mt-2 text-3xl text-red-600 font-bold">CHICKEN CRISPER® COMBOS</h2>
+        <p class="text-center mt-2"><span class="text-red-600 font-bold">Menu</span> › Chicken Crisper® Combos</p>
+        <p class="text-center mt-2 font-bold">Find Everything from Our Big Mouth Burgers®, our always sizzling, Full-on
+            Fajitas and our famous Chicken Crisper®</p>
+    </div>
+
+    <div class="w-24  mx-[1030px] mt-8">
+
+        <select class="select select-bordered">
+            <option disabled selected>Menu</option>
+            <option>Chicken</option>
+            <option>Beef</option>
+          </select>
     </div>
 
     <div id="food-items">
@@ -78,6 +100,8 @@
         <!-- Display a confirmation message -->
         <div id="confirmation" style="display:none;">Item added to cart!</div>
     </div>
+
+
 
     <div id="cart">
         <h2>Shopping Cart</h2>
