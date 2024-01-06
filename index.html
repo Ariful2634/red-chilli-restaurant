@@ -56,14 +56,19 @@
                     <div class="drawer-content">
                         <!-- Page content here -->
                         <label for="my-drawer-4" class="drawer-button btn btn-outline"><i
-                                class="fa-solid fa-bag-shopping"></i></label>
+                                class="fa-solid fa-bag-shopping text-2xl"></i></label>
                     </div>
                     <div class="drawer-side">
                         <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
                         <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                             <!-- Sidebar content here -->
-                            <li><a>Sidebar Item 1</a></li>
-                            <li><a>Sidebar Item 2</a></li>
+                            <div id="cart">
+                                <h2>Shopping Cart</h2>
+                                <ul id="cart-items">
+                                    <!-- Cart items will be displayed here dynamically -->
+                                </ul>
+                                <p>Total: $<span id="total">0.00</span></p>
+                            </div>
                         </ul>
                     </div>
                 </div>
@@ -85,31 +90,83 @@
             <option disabled selected>Menu</option>
             <option>Chicken</option>
             <option>Beef</option>
-          </select>
+        </select>
     </div>
 
-    <div id="food-items">
-        <h2>Food Items</h2>
-        <div class="item" id="item1">
-            <h3>Item 1</h3>
-            <p>Price: $10.00</p>
-            <button class="add-to-cart" onclick="addToCart('item1', 'Item 1', 10.00)">Add to Cart</button>
+    <!-- card section -->
+
+    <div class="grid grid-cols-3 gap-5 max-w-5xl mx-auto mt-10 mb-10">
+
+        <!-- card-1 -->
+
+        <div id="food-items" class="bg-gray-200">
+
+            <div class="item" id="item1">
+                <img class="h-[250px] w-full mx-auto p-2 rounded"
+                    src="/images/thumbnail-Chili_s-Chicken-Crispers-scaled.jpg" alt="">
+                <h2 class="px-2 font-bold text-xl">Chicken</h2>
+                <p class="px-2">69$/each</p>
+                <p class="p-2">Chicken fry is a savory dish featuring tender pieces of chicken coated in a seasoned
+                    batter and deep-fried until golden brown, resulting in a crispy and flavorful culinary delight.</p>
+                <div class="p-2">
+                    <button class="add-to-cart btn bg-red-600 text-white w-full " onclick="addToCart('item1', 'Item 1', 10.00)">Add to Order</button>
+                </div>
+                <div class="p-2">
+                    <button class="add-to-cart btn btn-error btn-outline text-white w-full" ">Customize</button>
+                </div>
+            </div>
+
+            <div id="confirmation" style="display:none;">Item added to cart!</div>
         </div>
-        <!-- Add more items as needed -->
 
-        <!-- Display a confirmation message -->
-        <div id="confirmation" style="display:none;">Item added to cart!</div>
+        <!-- card-2 -->
+
+        <div id="food-items" class="bg-gray-200">
+            <div class="item" id="item2">
+                <img class="h-[250px] w-full mx-auto p-2 rounded"
+                    src="/images/The-BEST-Chicken-Fajitas-iowagirleats-Featured-srgb.jpg" alt="">
+                <h2 class="px-2  font-bold text-xl">Fajitas</h2>
+                <p class="px-2">169$/each</p>
+                <p class="p-2">Fajitas are a flavorful Mexican dish featuring grilled and seasoned meat strips, usually
+                    served with sautéed vegetables and wrapped in tortillas for a delicious and customizable meal.</p>
+                <div class="p-2">
+                    <button class="add-to-cart btn bg-red-600 text-white w-full" onclick="addToCart('item2', 'Item 2', 10.00)">Add to Order</button>
+                </div>
+                <div class="p-2">
+                    <button class="add-to-cart btn btn-error btn-outline text-white w-full" ">Customize</button>
+                </div>
+            </div>
+
+            <div id="confirmation" style="display:none;">Item added to cart!</div>
+        </div>
+
+        <!-- card-3 -->
+
+        <div id="food-items" class="bg-gray-200">
+
+            <div class="item" id="item3">
+                <img class="h-[250px] w-full mx-auto p-2 rounded" src="/images/chicken-fried-fried-chicken-masala-1.jpg"
+                    alt="">
+                <h2 class="px-2  font-bold text-xl">Chicken Masala</h2>
+                <p class="px-2">269$/each</p>
+                <p class="p-2">
+                    Chicken masala is a rich and aromatic Indian dish where tender chicken pieces are simmered in a
+                    spiced tomato-based curry, creating a flavorful culinary experience.</p>
+                <div class="p-2">
+                    <button class="add-to-cart btn bg-red-600 text-white w-full" onclick="addToCart('item3', 'Item 3', 10.00)">Add to Order</button>
+                </div>
+                <div class="p-2">
+                    <button class="add-to-cart btn btn-error btn-outline text-white w-full" ">Customize</button>
+                </div>
+            </div>
+            
+            <div id="confirmation" style="display:none;">Item added to cart!</div>
+        </div>
     </div>
 
 
 
-    <div id="cart">
-        <h2>Shopping Cart</h2>
-        <ul id="cart-items">
-            <!-- Cart items will be displayed here dynamically -->
-        </ul>
-        <p>Total: $<span id="total">0.00</span></p>
-    </div>
+
     <script src="index.js"></script>
 </body>
 
