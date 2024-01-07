@@ -1,4 +1,6 @@
 let cart = [];
+const cartLengthElement = document.getElementById('item-length');
+const itemLengthElement = document.getElementById('items-length');
 
 function addToCart(itemId, itemName, itemPrice, itemImage) {
     // Check if item is already in the cart
@@ -8,9 +10,8 @@ function addToCart(itemId, itemName, itemPrice, itemImage) {
         // Add item to the cart
         cart.push({ id: itemId, name: itemName, price: itemPrice, quantity: 1, image: itemImage });
 
-
-
-
+        updateCartLength();
+        updateItemLength();
 
         // Display confirmation message
         document.getElementById('confirmation').style.display = 'block';
@@ -36,14 +37,16 @@ function updateCart() {
     cart.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
-        <div class="flex border border-white rounded p-2 mt-2">
+        <div class="flex border border-white relative rounded p-2 mt-4">
         <div>
-        <img class="h-[100px] w-[130px] rounded" src="${item.image}" alt="${item.name}"  >
+        <img class="h-[100px] w-[80px] rounded" src="${item.image}" alt="${item.name}"  >
         </div>
         <div>
-        ${item.name} - $${item.price.toFixed(2)} x ${item.quantity}
-        <button onclick="removeFromCart('${item.id}')">Remove</button>
-        <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.id}', this.value)">
+       <p class="font-bold text-white text-xl"> ${item.name} </p>
+       <p class=" text-white mb-2 text-xs  font-bold">${item.price}$/each</p>
+        <button class="bg-white py-1 px-2 rounded absolute -top-3 left-[250px]" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash text-red-600"></i></button>
+        <input class="w-20" type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.id}', this.value)">
+        <p class="absolute text-white top-24 left-[230px]  font-bold">${item.price* item.quantity}$</p>
         </div>
         </div>
     `;
@@ -71,6 +74,18 @@ function updateQuantity(itemId, newQuantity) {
 function removeFromCart(itemId) {
     cart = cart.filter(item => item.id !== itemId);
     updateCart();
+    updateCartLength();
+}
+
+function updateCartLength() {
+    if (cartLengthElement) {
+        cartLengthElement.textContent = cart.length.toString();
+    }
+}
+function updateItemLength() {
+    if (itemLengthElement) {
+        itemLengthElement.textContent = cart.length.toString();
+    }
 }
 
 function disableAddToCartButtons() {

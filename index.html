@@ -51,10 +51,10 @@
                 </div>
             </div>
 
-            <div class="navbar-center hidden lg:flex">
-                <ul class="menu menu-horizontal px-1">
-                    <img class="w-[100px]" src="images/spicy-pepper-clipart-design-illustration-free-png.webp" alt="">
-                    <li><a>Menu</a></li>
+            <div class="navbar-center hidden lg:flex ">
+                <ul class="menu menu-horizontal px-1 ">
+                    <img class="w-[100px] mr-10" src="images/spicy-pepper-clipart-design-illustration-free-png.webp" alt="">
+                    <li ><a>Menu</a></li>
                     <li><a>Rewards</a></li>
                     <li><a>Locations</a></li>
                     <li><a>Gift Cards</a></li>
@@ -70,16 +70,20 @@
                     <div class="drawer-content">
                         <!-- Page content here -->
                         <label for="my-drawer-4"><a class="indicator tab tab-active">
-                            <i class="fa-solid fa-bag-shopping text-3xl"></i> 
-                            <span class="indicator-item badge font-bold ">8</span>
+                            <i class="fa-solid fa-bag-shopping text-3xl mt-2 relative"></i> 
+                            <span id="item-length" class="indicator-item badge font-bold absolute top-4  right-5 bg-red-600 border-none text-white">0</span>
                           </a></i></label>
                     </div>
                     <div class="drawer-side">
                         <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay "></label>
-                        <ul class="menu p-4 w-80 min-h-full bg-red-500 text-base-content">
+                        <div class="px-2 bg-white ">
+                            <p><i class="fa-solid fa-bag-shopping text-xl mt-2"><span id="items-length" class="indicator-item badge font-bold  top-4  right-5 bg-transparent border-none text-white">0</span></i>item</p> 
+                            
+                        </div>
+                        <ul class="menu p-4 w-[300px] min-h-full bg-red-500 text-base-content">
                             <!-- Sidebar content here -->
+                            
                             <div id="cart" class="">
-                                <h2>Shopping Cart</h2>
                                 <ul id="cart-items">
                                     <!-- Cart items will be displayed here dynamically -->
                                     
