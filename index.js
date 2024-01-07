@@ -6,7 +6,7 @@ function addToCart(itemId, itemName, itemPrice, itemImage) {
 
     if (!existingItem) {
         // Add item to the cart
-        cart.push({ id: itemId, name: itemName, price: itemPrice, quantity: 1 });
+        cart.push({ id: itemId, name: itemName, price: itemPrice, quantity: 1, image: itemImage });
 
 
 
@@ -36,10 +36,16 @@ function updateCart() {
     cart.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" width="50">
+        <div class="flex border border-white rounded p-2 mt-2">
+        <div>
+        <img class="h-[100px] w-[130px] rounded" src="${item.image}" alt="${item.name}"  >
+        </div>
+        <div>
         ${item.name} - $${item.price.toFixed(2)} x ${item.quantity}
         <button onclick="removeFromCart('${item.id}')">Remove</button>
         <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.id}', this.value)">
+        </div>
+        </div>
     `;
 
         cartItemsElement.appendChild(li);
