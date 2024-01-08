@@ -2,8 +2,8 @@ let cart = [];
 const cartLengthElement = document.getElementById('item-length');
 const itemLengthElement = document.getElementById('items-length');
 
-function addToCart(itemId, itemName, itemPrice, itemImage) {
-    // Check if item is already in the cart
+function addToCart(itemId, itemName, itemPrice, itemImage,button) {
+    // Checking if item is already in the cart
     const existingItem = cart.find(item => item.id === itemId);
 
     if (!existingItem) {
@@ -11,16 +11,14 @@ function addToCart(itemId, itemName, itemPrice, itemImage) {
         cart.push({ id: itemId, name: itemName, price: itemPrice, quantity: 1, image: itemImage });
 
         updateCartLength();
-        updateItemLength();
-
-        // Display confirmation message
-        document.getElementById('confirmation').style.display = 'block';
-        setTimeout(() => {
-            document.getElementById('confirmation').style.display = 'none';
-        }, 2000);
+        updateItemLength(); 
     }
 
-    // Update the cart display
+    if (button) {
+        button.style.backgroundColor = 'gray';
+    }
+
+    // Update the cart 
     updateCart();
 }
 
@@ -33,7 +31,7 @@ function updateCart() {
 
     let totalPrice = 0;
 
-    // Populate the cart
+    // cart section
     cart.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
@@ -45,7 +43,7 @@ function updateCart() {
        <p class="font-bold text-white text-xl"> ${item.name} </p>
        <p class=" text-white mb-2 text-xs  font-bold">${item.price}$/each</p>
         <button class="bg-white py-1 px-2 rounded absolute -top-3 left-[250px]" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash text-red-600"></i></button>
-        <input class="w-20" type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.id}', this.value)">
+        <input class="w-20 rounded p-1" type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.id}', this.value)">
         <p class="absolute text-white top-24 left-[230px]  font-bold">${item.price* item.quantity}$</p>
         </div>
         </div>
@@ -57,9 +55,9 @@ function updateCart() {
     });
 
     // Update the total price
-    totalElement.textContent = totalPrice.toFixed(2);
+    totalElement.textContent = totalPrice;
 
-    // Disable the 'Add to Cart' button for added items
+    // Disable the 'Add to Cart' button after order 
     disableAddToCartButtons();
 }
 
@@ -89,7 +87,7 @@ function updateItemLength() {
 }
 
 function disableAddToCartButtons() {
-    // Disable the 'Add to Cart' button for items already in the cart
+    // Disable the 'Add to Cart' button after order 
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach(button => {
         const itemId = button.parentNode.id;
