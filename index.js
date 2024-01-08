@@ -1,4 +1,6 @@
 let cart = [];
+let buttonItemColor = {};
+
 const cartLengthElement = document.getElementById('item-length');
 const itemLengthElement = document.getElementById('items-length');
 const drawerCheckbox = document.getElementById('my-drawer-4');
@@ -20,12 +22,13 @@ function addToCart(itemId, itemName, itemPrice, itemImage, button) {
             drawerCheckbox.checked = true;
         }
 
-        button.classList.add('order-added');
-    }
+        buttonItemColor[itemId] = button; 
 
-    if (button) {
+        button.classList.add('order-added');
         button.style.backgroundColor = 'gray';
     }
+
+    
 
     // Update the cart 
     updateCart();
@@ -49,7 +52,7 @@ function updateCart() {
         <img class="h-[100px] w-[80px] rounded" src="${item.image}" alt="${item.name}"  >
         </div>
         <div>
-       <p class="font-bold text-white text-xl"> ${item.name} </p>
+       <p class="font-bold text-white text-lg"> ${item.name} </p>
        <p class=" text-white mb-2 text-xs  font-bold">${item.price}$/each</p>
         <button class="bg-white py-1 px-2 rounded absolute -top-3 left-[250px]" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash text-red-600"></i></button>
         <input class="w-20 rounded p-1" type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.id}', this.value)">
@@ -82,11 +85,10 @@ function removeFromCart(itemId) {
     cart = cart.filter(item => item.id !== itemId);
     updateCart();
     // Remove the 'order-added' class to reset button color
-    const addToOrderButtons = document.querySelectorAll('.add-to-cart');
-    addToOrderButtons.forEach(button => {
-        button.classList.remove('order-added');
-        button.style.backgroundColor = ''; // Set to default color if needed
-    });
+    const removedButton = buttonItemColor[itemId];
+    if (removedButton) {
+        removedButton.style.backgroundColor = ''; 
+    }
     updateCartLength();
     updateItemLength()
 
