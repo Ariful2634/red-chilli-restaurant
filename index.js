@@ -1,8 +1,10 @@
 let cart = [];
 const cartLengthElement = document.getElementById('item-length');
 const itemLengthElement = document.getElementById('items-length');
+const drawerCheckbox = document.getElementById('my-drawer-4');
 
-function addToCart(itemId, itemName, itemPrice, itemImage,button) {
+
+function addToCart(itemId, itemName, itemPrice, itemImage, button) {
     // Checking if item is already in the cart
     const existingItem = cart.find(item => item.id === itemId);
 
@@ -11,7 +13,14 @@ function addToCart(itemId, itemName, itemPrice, itemImage,button) {
         cart.push({ id: itemId, name: itemName, price: itemPrice, quantity: 1, image: itemImage });
 
         updateCartLength();
-        updateItemLength(); 
+        updateItemLength();
+
+        // Open the drawer
+        if (drawerCheckbox) {
+            drawerCheckbox.checked = true;
+        }
+
+        button.classList.add('order-added');
     }
 
     if (button) {
@@ -44,7 +53,7 @@ function updateCart() {
        <p class=" text-white mb-2 text-xs  font-bold">${item.price}$/each</p>
         <button class="bg-white py-1 px-2 rounded absolute -top-3 left-[250px]" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash text-red-600"></i></button>
         <input class="w-20 rounded p-1" type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.id}', this.value)">
-        <p class="absolute text-white top-24 left-[230px]  font-bold">${item.price* item.quantity}$</p>
+        <p class="absolute text-white top-24 left-[230px]  font-bold">${item.price * item.quantity}$</p>
         </div>
         </div>
     `;
@@ -72,7 +81,16 @@ function updateQuantity(itemId, newQuantity) {
 function removeFromCart(itemId) {
     cart = cart.filter(item => item.id !== itemId);
     updateCart();
+    // Remove the 'order-added' class to reset button color
+    const addToOrderButtons = document.querySelectorAll('.add-to-cart');
+    addToOrderButtons.forEach(button => {
+        button.classList.remove('order-added');
+        button.style.backgroundColor = ''; // Set to default color if needed
+    });
     updateCartLength();
+    updateItemLength()
+
+
 }
 
 function updateCartLength() {
@@ -84,6 +102,17 @@ function updateItemLength() {
     if (itemLengthElement) {
         itemLengthElement.textContent = cart.length.toString();
     }
+}
+
+
+// Close the drawer after clicking the close button
+const closeButton = document.querySelector('.btn-close');
+if (closeButton) {
+    closeButton.addEventListener('click', function () {
+        if (drawerCheckbox) {
+            drawerCheckbox.checked = false;
+        }
+    });
 }
 
 function disableAddToCartButtons() {
